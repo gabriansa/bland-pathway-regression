@@ -2,6 +2,8 @@
 
 Test Bland AI pathways with AI-generated personas.
 
+> **⚠️ Disclaimer**: This entire codebase was AI-generated (white-coded) using Claude via Cursor AI. The code is provided as-is for testing and development purposes.
+
 ## Setup
 
 1. **Clone the repository**
