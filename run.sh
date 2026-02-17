@@ -32,4 +32,4 @@ echo "Opening dashboard at http://localhost:8501"
 echo "Press Ctrl+C to stop"
 echo ""
 
-streamlit run app.py
+streamlit run src/app.py

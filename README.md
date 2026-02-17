@@ -38,12 +38,12 @@ BLAND_API_KEY=your_bland_api_key_here
 Just run this and get results in your terminal:
 
 ```bash
-python run_test.py <pathway_id> [num_personas]
+python src/run_test.py <pathway_id> [num_personas]
 ```
 
 Example:
 ```bash
-python run_test.py fecb7311-770d-4ffc-8347-0ebc9f323674 3
+python src/run_test.py fecb7311-770d-4ffc-8347-0ebc9f323674 3
 ```
 
 Output includes:
@@ -62,7 +62,7 @@ Launch the interactive web UI:
 
 Or manually:
 ```bash
-streamlit run app.py
+streamlit run src/app.py
 ```
 
 Then open http://localhost:8501 in your browser.
@@ -100,7 +100,7 @@ Each persona includes:
 
 ### Generate Personas
 ```python
-from persona_factory import PersonaFactory
+from src.persona_factory import PersonaFactory
 
 factory = PersonaFactory("pathway-id")
 personas = factory.generate_personas(n=10)
@@ -117,7 +117,7 @@ print(personas[0]['goal']['call_context'])
 
 ### Run Tests
 ```python
-from pathway_runner import PathwayRunner
+from src.pathway_runner import PathwayRunner
 
 runner = PathwayRunner()
 result = runner.run_conversation(
@@ -130,7 +130,7 @@ result = runner.run_conversation(
 
 ### Evaluate Results
 ```python
-from pathway_evaluator import PathwayEvaluator
+from src.pathway_evaluator import PathwayEvaluator
 
 evaluation = PathwayEvaluator.evaluate_result(result, personas[0])
 print(f"Match: {evaluation['match_summary']['match_percentage']:.1f}%")
@@ -154,10 +154,17 @@ python test_pathway_runner.py
 
 ## Structure
 
-- `app.py` - Streamlit web dashboard
-- `persona_factory.py` - Generate test personas
-- `pathway_runner.py` - Run conversations
-- `pathway_evaluator.py` - Compare results with expectations
-- `test_*.py` - Test scripts
-- `evaluate_results.py` - Batch evaluation
-- `run.sh` - Quick launcher script
+```
+bland-pathway-regression/
+├── src/
+│   ├── app.py                    # Streamlit web dashboard
+│   ├── persona_factory.py        # Generate test personas
+│   ├── pathway_runner.py         # Run conversations
+│   ├── pathway_evaluator.py      # Compare results with expectations
+│   ├── run_test.py               # CLI test runner
+│   └── evaluate_results.py       # Batch evaluation
+├── requirements.txt              # Python dependencies
+├── run.sh                        # Quick launcher script
+├── .env                          # Environment variables (create from .env.example)
+└── README.md                     # This file
+```
